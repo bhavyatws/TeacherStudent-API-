@@ -47,8 +47,11 @@ class Assignment(models.Model):
     timestamp=models.DateTimeField(auto_now=True)
     teacher=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True,related_name='teacher')
     student=models.ManyToManyField(User)
+   
+    # comment=models.ManyToManyField('Comment')
 
 class Comment(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
+    assignment=models.ManyToManyField(Assignment)
     comment=models.TextField()
     timestamp=models.DateTimeField(auto_now=True)

@@ -33,7 +33,7 @@ class CustomUserAdmin(UserAdmin):
             },
         ),
     )
-    list_display = ("username",  "first_name", "last_name", "is_staff")
+    list_display = ("username",  "first_name", "last_name", "is_teacher")
     list_filter = ("is_staff", "is_superuser", "is_active", "groups")
     search_fields = ("username", "first_name", "last_name", "email")
     ordering = ("username",)
@@ -43,5 +43,5 @@ class CustomUserAdmin(UserAdmin):
     )
     
 admin.site.register(get_user_model(),CustomUserAdmin)
-admin.site.register(Assignment)
+admin.site.register((Assignment,Comment))
 
