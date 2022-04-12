@@ -29,7 +29,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
 class AssignmentSerializer(serializers.ModelSerializer):
     teacher=UserSerializer(read_only=True)
-    comment=CommentSerializer(read_only=True)
+    comment=CommentSerializer(many=True,read_only=True)
     class Meta:
         model=Assignment
         # fields='__all__'

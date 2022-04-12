@@ -25,6 +25,12 @@ class UserView(viewsets.ModelViewSet):
             
         except:
             return super().get_serializer_class()
+    
+    def perform_create(self, serializer):
+        instance=serializer.save()
+        instance.set_password(instance.password)
+        instance.save()
+      
   
 
     
@@ -80,8 +86,10 @@ class AssignmentView(viewsets.ModelViewSet):
 class CommentView(viewsets.ModelViewSet):
     def get_queryset(self):
         id=self.request.GET.get('id')
-        print(id)
-        return Comment.objects.all()
+        if id:
+            return Comment.objects.filter(id=id)
+        else:
+            return Comment.objects
     serializer_class=CommentSerializer
     permission_classes=[IsAuthenticated,OwnerOnly]
 

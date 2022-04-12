@@ -52,6 +52,7 @@ class Assignment(models.Model):
 
 class Comment(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
-    assignment=models.ManyToManyField(Assignment)
+    #by giving related name,we can use this to which it has relation
+    assignment=models.ManyToManyField(Assignment,related_name="comment")
     comment=models.TextField()
     timestamp=models.DateTimeField(auto_now=True)
